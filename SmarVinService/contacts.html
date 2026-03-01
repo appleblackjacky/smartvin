@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СМАРТВИН | Контакты</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        /* Все твои старые стили остаются без изменений, я только добавляю новые внизу */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: #f0f0f0;
+            background: url('i.webp') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(20, 10, 30, 0.75);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .floating-dots {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .floating-dots span {
+            position: absolute;
+            display: block;
+            width: 6px;
+            height: 6px;
+            background: rgba(180, 130, 255, 0.2);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            background: rgba(30, 20, 40, 0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(200, 150, 255, 0.15);
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            color: #d0b0ff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.2rem;
+            padding: 8px 16px;
+            border-radius: 40px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        .nav a:hover, .nav a.active {
+            background: rgba(160, 100, 255, 0.2);
+            border-color: #a06aff;
+            color: white;
+        }
+        h1 {
+            font-size: 2.8rem;
+            color: #c9a9ff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+        .contact-info {
+            background: rgba(0,0,0,0.3);
+            border-radius: 40px;
+            padding: 30px;
+        }
+        .contact-info h2 {
+            color: #c9a9ff;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+        .contact-item i {
+            width: 40px;
+            font-size: 1.8rem;
+            color: #b57cff;
+        }
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+        .contact-item a:hover {
+            text-decoration: underline;
+            color: #b57cff;
+        }
+        .work-hours {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 30px;
+        }
+        .work-hours p {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+        .work-hours i {
+            color: #b57cff;
+            width: 30px;
+        }
+        .phone-big {
+            display: block;
+            text-align: center;
+            background: linear-gradient(45deg, #8a4dff, #b57cff);
+            color: white;
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin: 30px 0;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 15px 30px rgba(138, 77, 255, 0.5);
+            transition: all 0.3s;
+        }
+        .phone-big:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(138, 77, 255, 0.7);
+        }
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .social-icon:hover {
+            background: #8a4dff;
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        /* ===== НОВЫЕ СТИЛИ ДЛЯ НИЖНЕГО РЯДА ===== */
+        .bottom-row {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap; /* чтобы на мобилках вставали друг под друга */
+        }
+
+        .bottom-row > div {
+            flex: 1 1 300px; /* каждый блок занимает минимум 300px, но может расти */
+            min-width: 0; /* чтобы flex-элементы не вылезали за пределы */
+        }
+
+        /* Стили для контейнера карты */
+        .map {
+            border-radius: 40px;
+            overflow: hidden;
+            height: 400px; /* фиксированная высота, как у виджета */
+        }
+
+        /* Стили для контейнера отзывов */
+        .reviews-grid {
+            height: 400px; /* такая же высота, чтобы были ровными */
+            overflow: hidden;
+            border-radius: 40px;
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 700px) {
+            h1 { font-size: 2rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .card { padding: 30px 20px; }
+            .bottom-row {
+                flex-direction: column; /* на телефонах блоки встают вертикально */
+            }
+            .map, .reviews-grid {
+                height: 350px; /* чуть меньше на мобилках */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-dots" id="floatingDots"></div>
+    <div class="container">
+        <div class="card">
+            <div class="nav">
+                <a href="index.html">Главная</a>
+                <a href="about.html">О нас</a>
+                <a href="services.html">Услуги</a>
+                <a href="contacts.html" class="active">Контакты</a>
+            </div>
+            
+            <h1>📞 Контакты</h1>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2><i class="fas fa-map-pin"></i> Адрес</h2>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>г. Томск, пер. Дербышевский д.26Б, 1 этаж (вход в «Мои Документы»)</span>
+                    </div>
+                    <div class="work-hours">
+                        <p><i class="far fa-clock"></i> ПН-СБ 11:00–19:30</p>
+                        <p><i class="far fa-clock"></i> ВС 11:00–18:00</p>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <h2><i class="fas fa-phone-alt"></i> Телефон:</h2>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+79521647476">+7 (952) 164-74-76</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/79521647476">WhatsApp</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-telegram"></i>
+                        <a href="https://t.me/smartvinservice">Telegram</a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="tel:+79521647476" class="phone-big">
+                <i class="fas fa-phone-alt"></i> +7 (952) 164-74-76
+            </a>
+            
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
+            </div>
+            
+            <!-- ===== НОВЫЙ БЛОК: карта и отзывы рядом ===== -->
+            <div class="bottom-row">
+                <!-- Карта -->
+                <div class="map">
+                    <div style="position:relative;overflow:hidden; height: 100%;">
+                        <a href="https://yandex.ru/maps/org/smartvin/176394095834/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Смартвин</a>
+                        <a href="https://yandex.ru/maps/67/tomsk/category/phone_repair/184107787/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Ремонт телефонов в Томске</a>
+                        <a href="https://yandex.ru/maps/67/tomsk/category/computer_repairs_and_services/184105768/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:28px;">Компьютерный ремонт и услуги в Томске</a>
+                        <iframe src="https://yandex.ru/map-widget/v1/?ll=84.946211%2C56.504303&mode=search&oid=176394095834&ol=biz&sll=37.617700%2C55.755863&sspn=1.337585%2C0.469305&text=%D1%82%D0%BE%D0%BC%D1%81%D0%BA%20%D1%81%D0%BC%D0%B0%D1%80%D1%82%D0%B2%D0%B8%D0%BD&z=14.57" 
+                            style="width:100%; height:100%; border:0;" 
+                            allowfullscreen="true">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Отзывы -->
+                <div class="reviews-grid">
+                    <div style="width:100%; height:100%; overflow:hidden; position:relative;">
+                        <iframe style="width:100%; height:100%; border:1px solid #e6e6e6; border-radius:8px; box-sizing:border-box" 
+                                src="https://yandex.ru/maps-reviews-widget/176394095834?comments">
+                        </iframe>
+                        <a href="https://yandex.ru/maps/org/smartvin/176394095834/" target="_blank" 
+                           style="box-sizing:border-box; text-decoration:none; color:#b3b3b3; font-size:10px; font-family:YS Text,sans-serif; padding:0 20px; position:absolute; bottom:8px; width:100%; text-align:center; left:0; overflow:hidden; text-overflow:ellipsis; display:block; max-height:14px; white-space:nowrap; padding:0 16px; box-sizing:border-box">
+                           Смартвин на карте Томска — Яндекс Карты
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- ===== КОНЕЦ НОВОГО БЛОКА ===== -->
+
+            <p style="text-align: center; margin-top: 30px;">
+                <i class="fas fa-comment-dots"></i> ✉ Пишите или звоните, мы ответим на все ваши вопросы!
+            </p>
+        </div>
+    </div>
+    <script>
+        const dotsContainer = document.getElementById('floatingDots');
+        for (let i = 0; i < 40; i++) {
+            const dot = document.createElement('span');
+            const size = Math.floor(Math.random() * 12 + 4);
+            dot.style.width = size + 'px';
+            dot.style.height = size + 'px';
+            dot.style.left = Math.random() * 100 + '%';
+            dot.style.top = Math.random() * 100 + '%';
+            dot.style.animationDelay = Math.random() * 10 + 's';
+            dot.style.animationDuration = Math.floor(Math.random() * 25 + 15) + 's';
+            dot.style.background = `rgba(180, 130, 255, ${Math.random() * 0.3 + 0.1})`;
+            dotsContainer.appendChild(dot);
+        }
+    </script>
+</body>
+</html>
